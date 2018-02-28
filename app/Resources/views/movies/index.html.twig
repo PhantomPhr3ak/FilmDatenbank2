@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2 class="page-header">Test</h2>
+    {{ status }}
+
+    {% for movie in movies %}
+        <div class="container bg-light m-3 p-3">
+            <h2>{{ movie.name }}</h2>
+            <p>
+                <ul>
+                    <li>ID: <strong>{{ movie.id }}</strong></li>
+                    <li>Regisseur: <strong>{{ movie.regisseur }}</strong></li>
+                    <li>Beschreibung: <strong>{{ movie.description }}</strong></li>
+                    <li>Erscheinungsdatum: <strong>{{ movie.date | date('d.m.Y') }}</strong></li>
+                </ul>
+            </p>
+        </div>
+    {% endfor %}
+{% endblock %}
