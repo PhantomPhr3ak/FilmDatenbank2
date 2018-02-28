@@ -39,7 +39,7 @@ class MovieController extends Controller
     /**
      * @Route("/create", name="movie_create")
      */
-    public function createAction(){
+    public function createAction(Request $request){
         $movie = new Movies\Movie();
 
         $form = $this->createFormBuilder($movie)
@@ -50,16 +50,22 @@ class MovieController extends Controller
             ->add('submit', SubmitType::class, array('label' => 'Insert', 'attr' => array('style' => 'margin-top: 1rem;', 'class' => 'btn btn-primary')))
             ->getForm();
 
-        $movie->setDate(new \DateTime('11-11-2009'));
-        $movie->setDescription('Hey there');
-        $movie->setName('Lucy');
-        $movie->setRegisseur('1');
+        $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($movie);
-        $em->flush();
+        if ($form->isSubmitted() && $form->isValid()){
+            $movie = $form->getData();
 
-        $status = 'All done';
+/*            $movie->setDate(new \DateTime('11-11-2009'));
+            $movie->setDescription('Hey there');
+            $movie->setName('Lucy');
+            $movie->setRegisseur('1');*/
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($movie);
+            $em->flush();
+
+            return $this->redirectToRoute('movie_home');
+        }
 
         return $this->render('movies/create.html.twig', array(
             'form' => $form->createView()
