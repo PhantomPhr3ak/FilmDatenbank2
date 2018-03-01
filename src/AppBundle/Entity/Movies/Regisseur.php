@@ -125,11 +125,5 @@ class Regisseur
     {
         return $this->fullName;
     }
-
-    public function  __set($name, $value)
-    {
-        // TODO: Implement __set() method.
-
-    }
 }
 

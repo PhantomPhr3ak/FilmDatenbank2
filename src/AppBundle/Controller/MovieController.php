@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Movies\Movie;
 use AppBundle\Entity\Movies\Regisseur;
@@ -47,7 +48,7 @@ class MovieController extends Controller
             ->add('name', TextType::class, array('attr' => array('style' => 'max-width: 50%','class' => 'm-2 form-control')))
             ->add('date', DateType::class, array('attr' => array('style' => 'max-width: 50%','class' => 'm-2 form-control')))
             ->add('description', TextareaType::class, array('attr' => array('style' => 'max-width: 50%','class' => 'm-2 form-control')))
-            ->add('regisseur', TextType::class, array('attr' => array('style' => 'max-width: 50%','class' => 'm-2 form-control')))
+            ->add('regisseur', EntityType::class, array('class' => Regisseur::class,'required' => false,'attr' => array('style' => 'max-width: 50%','class' => 'm-2 form-control')))
             ->add('submit', SubmitType::class, array('label' => 'Insert', 'attr' => array('style' => 'margin-top: 1rem;', 'class' => 'btn btn-primary')))
             ->getForm();
 
