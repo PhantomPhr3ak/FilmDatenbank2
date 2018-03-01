@@ -945,31 +945,40 @@
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="236" parent="229" name="PRIMARY">
+    <index id="236" parent="229" name="IDX_66BCD06EA41A7CDE">
+      <ColNames>regisseur</ColNames>
+    </index>
+    <key id="237" parent="229" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="237" parent="230" name="id">
+    <foreign-key id="238" parent="229" name="FK_66BCD06EA41A7CDE">
+      <ColNames>regisseur</ColNames>
+      <RefSchemaName>filmdatenbank2</RefSchemaName>
+      <RefTableName>movies_regisseur</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="239" parent="230" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="238" parent="230" name="fullName">
+    <column id="240" parent="230" name="fullName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="230" name="birthday">
+    <column id="241" parent="230" name="birthday">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="240" parent="230" name="PRIMARY">
+    <key id="242" parent="230" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

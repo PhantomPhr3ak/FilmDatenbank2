@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity\Movies;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Movies\Movie;
 
 /**
  * Regisseur
@@ -31,10 +33,35 @@ class Regisseur
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthday", type="datetime")
+     * @ORM\Column(name="birthday", type="datetime", nullable=true)
      */
     private $birthday;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Movies\Movie", mappedBy="regisseur")
+     */
+    private $movies;
+
+    public function __construct()
+    {
+        $this->movies = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMovies()
+    {
+        return $this->movies;
+    }
+
+    /**
+     * @param mixed $movies
+     */
+    public function setMovies($movies)
+    {
+        $this->movies = $movies;
+    }
 
     /**
      * Get id
@@ -92,6 +119,17 @@ class Regisseur
     public function getBirthday()
     {
         return $this->birthday;
+    }
+
+    public function __toString()
+    {
+        return $this->fullName;
+    }
+
+    public function  __set($name, $value)
+    {
+        // TODO: Implement __set() method.
+
     }
 }
 

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity\Movies;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Movies\Regisseur;
 
 /**
  * Movie
@@ -45,10 +46,10 @@ class Movie
     /**
      * @var int
      *
-     * @ORM\Column(name="regisseur", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Movies\Regisseur", inversedBy="movies")
+     * @ORM\JoinColumn(name="regisseur", referencedColumnName="id")
      */
     private $regisseur;
-
 
     /**
      * Get id

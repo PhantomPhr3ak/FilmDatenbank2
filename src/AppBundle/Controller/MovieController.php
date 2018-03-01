@@ -10,7 +10,8 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Entity\Movies;
+use AppBundle\Entity\Movies\Movie;
+use AppBundle\Entity\Movies\Regisseur;
 
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -40,7 +41,7 @@ class MovieController extends Controller
      * @Route("/create", name="movie_create")
      */
     public function createAction(Request $request){
-        $movie = new Movies\Movie();
+        $movie = new Movie();
 
         $form = $this->createFormBuilder($movie)
             ->add('name', TextType::class, array('attr' => array('style' => 'max-width: 50%','class' => 'm-2 form-control')))
@@ -54,11 +55,6 @@ class MovieController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()){
             $movie = $form->getData();
-
-/*            $movie->setDate(new \DateTime('11-11-2009'));
-            $movie->setDescription('Hey there');
-            $movie->setName('Lucy');
-            $movie->setRegisseur('1');*/
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($movie);
