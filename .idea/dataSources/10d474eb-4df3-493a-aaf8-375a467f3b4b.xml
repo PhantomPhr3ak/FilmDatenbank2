@@ -915,73 +915,135 @@
       <Engine>InnoDB</Engine>
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <column id="231" parent="229" name="id">
+    <table id="231" parent="3" name="moviesproducer">
+      <Engine>InnoDB</Engine>
+      <Collation>utf8_unicode_ci</Collation>
+    </table>
+    <column id="232" parent="229" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="232" parent="229" name="name">
+    <column id="233" parent="229" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="233" parent="229" name="date">
+    <column id="234" parent="229" name="date">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="234" parent="229" name="description">
+    <column id="235" parent="229" name="description">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="235" parent="229" name="regisseur">
+    <column id="236" parent="229" name="regisseur">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="236" parent="229" name="IDX_66BCD06EA41A7CDE">
+    <column id="237" parent="229" name="producer">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="238" parent="229" name="IDX_66BCD06EA41A7CDE">
       <ColNames>regisseur</ColNames>
     </index>
-    <key id="237" parent="229" name="PRIMARY">
+    <index id="239" parent="229" name="IDX_66BCD06E976449DC">
+      <ColNames>producer</ColNames>
+    </index>
+    <key id="240" parent="229" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="238" parent="229" name="FK_66BCD06EA41A7CDE">
+    <foreign-key id="241" parent="229" name="FK_66BCD06EA41A7CDE">
       <ColNames>regisseur</ColNames>
       <RefSchemaName>filmdatenbank2</RefSchemaName>
       <RefTableName>movies_regisseur</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="239" parent="230" name="id">
+    <foreign-key id="242" parent="229" name="FK_66BCD06E976449DC">
+      <ColNames>producer</ColNames>
+      <RefSchemaName>filmdatenbank2</RefSchemaName>
+      <RefTableName>moviesproducer</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="243" parent="230" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="240" parent="230" name="fullName">
+    <column id="244" parent="230" name="fullName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="230" name="birthday">
+    <column id="245" parent="230" name="birthday">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="242" parent="230" name="PRIMARY">
+    <key id="246" parent="230" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+    </key>
+    <column id="247" parent="231" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="248" parent="231" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="249" parent="231" name="website">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="231" name="movies">
+      <Position>4</Position>
+      <Comment>(DC2Type:array)</Comment>
+      <DataType>longtext|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="251" parent="231" name="UNIQ_2F57A3E65E237E06">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="252" parent="231" name="UNIQ_2F57A3E6476F5DE7">
+      <ColNames>website</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="253" parent="231" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="254" parent="231" name="UNIQ_2F57A3E65E237E06">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>UNIQ_2F57A3E65E237E06</UnderlyingIndexName>
+    </key>
+    <key id="255" parent="231" name="UNIQ_2F57A3E6476F5DE7">
+      <ColNames>website</ColNames>
+      <UnderlyingIndexName>UNIQ_2F57A3E6476F5DE7</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

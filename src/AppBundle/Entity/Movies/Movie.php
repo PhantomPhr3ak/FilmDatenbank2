@@ -3,7 +3,6 @@
 namespace AppBundle\Entity\Movies;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Movies\Regisseur;
 
 /**
  * Movie
@@ -50,6 +49,14 @@ class Movie
      * @ORM\JoinColumn(name="regisseur", referencedColumnName="id")
      */
     private $regisseur;
+
+    /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Movies\producer", inversedBy="movies")
+     * @ORM\JoinColumn(name="producer", referencedColumnName="id")
+     */
+    private $producer;
 
     /**
      * Get id
@@ -155,5 +162,23 @@ class Movie
     public function getRegisseur()
     {
         return $this->regisseur;
+    }
+
+    /**
+     * @return int
+     */
+    public function getProducer()
+    {
+        return $this->producer;
+    }
+
+    /**
+     * @param int $producer
+     * @return Movie
+     */
+    public function setProducer($producer)
+    {
+        $this->producer = $producer;
+        return $this;
     }
 }
