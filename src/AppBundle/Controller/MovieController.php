@@ -29,6 +29,14 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class MovieController extends Controller
 {
     /**
+     * @Route("/admin")
+     */
+    public function adminAction()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
+    }
+
+    /**
      * @Route("/", name="movie_home")
      */
     public function indexAction(){
@@ -41,7 +49,9 @@ class MovieController extends Controller
     }
 
     /**
-     * @Route("/create", name="movie_create")
+     * @Route("/create/movie", name="movie_create")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function createAction(Request $request){
         $movie = new Movie();
@@ -62,6 +72,64 @@ class MovieController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($movie);
+            $em->flush();
+
+            return $this->redirectToRoute('movie_home');
+        }
+
+        return $this->render('movies/create.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/create/producer", name="producer_create")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function createProducerAction(Request $request){
+        $producer = new producer();
+
+        $form = $this->createFormBuilder($producer)
+            ->add('name', TextType::class, array('attr' => array('style' => 'max-width: 50%', 'class' => 'form-control m-3')))
+            ->add('website', TextType::class, array('required' => false,'attr' => array('style'=>'max-width: 50%', 'class' => 'form-control m-3')))
+            ->add('submit', SubmitType::class, array('attr' => array('class' => 'btn btn-success m-3')))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($producer);
+            $em->flush();
+
+            return $this->redirectToRoute('movie_home');
+        }
+
+        return $this->render('movies/create.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("create/regisseur", name="regisseur_create")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function createRegisseurAction(Request $request){
+        $regisseur = new Regisseur();
+
+        $form = $this->createFormBuilder($regisseur)
+            ->add('fullName', TextType::class, array('attr' => array('style' => 'max-width: 50%', 'class' => 'form-control m-3')))
+            ->add('birthday', DateType::class, array('required' => false,'attr' => array('style'=>'max-width: 50%', 'class' => 'form-control m-3')))
+            ->add('submit', SubmitType::class, array('attr' => array('class' => 'btn btn-success m-3')))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($regisseur);
             $em->flush();
 
             return $this->redirectToRoute('movie_home');

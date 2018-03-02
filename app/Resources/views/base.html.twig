@@ -26,11 +26,17 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item active border-left border-right">
                 <a class="nav-link" href="{{ path('movie_home') }}">All Movies</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item border-left border-right border-light">
                 <a class="nav-link active" href="{{ path('movie_create') }}">New Movie</a>
+            </li>
+            <li class="nav-item border-left border-right border-light">
+                <a class="nav-link active" href="{{ path('producer_create') }}">New Producer</a>
+            </li>
+            <li class="nav-item border-left border-right border-light">
+                <a class="nav-link active" href="{{ path('regisseur_create') }}">New Regisseur</a>
             </li>
         </ul>
     </div>
