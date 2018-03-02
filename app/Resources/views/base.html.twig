@@ -38,7 +38,13 @@
             <li class="nav-item border-left border-right border-light">
                 <a class="nav-link active" href="{{ path('regisseur_create') }}">New Regisseur</a>
             </li>
+            <li class="nav-item border-left border-right border-light">
+                <a class="nav-link active" href="{{ path('login') }}">Login</a>
+            </li>
         </ul>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a class="btn btn-danger m-2" href="{{ path('logout') }}">LOGOUT</a>
+        {% endif %}
     </div>
 </nav>
 
