@@ -911,193 +911,233 @@
       <Engine>InnoDB</Engine>
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <table id="230" parent="3" name="movies_movie">
+    <table id="230" parent="3" name="comments">
       <Engine>InnoDB</Engine>
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <table id="231" parent="3" name="movies_regisseur">
+    <table id="231" parent="3" name="movies_movie">
       <Engine>InnoDB</Engine>
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <table id="232" parent="3" name="moviesproducer">
+    <table id="232" parent="3" name="movies_regisseur">
       <Engine>InnoDB</Engine>
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <column id="233" parent="229" name="id">
+    <table id="233" parent="3" name="moviesproducer">
+      <Engine>InnoDB</Engine>
+      <Collation>utf8_unicode_ci</Collation>
+    </table>
+    <column id="234" parent="229" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="234" parent="229" name="username">
+    <column id="235" parent="229" name="username">
       <Position>2</Position>
       <DataType>varchar(25)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="235" parent="229" name="password">
+    <column id="236" parent="229" name="password">
       <Position>3</Position>
       <DataType>varchar(64)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="236" parent="229" name="email">
+    <column id="237" parent="229" name="email">
       <Position>4</Position>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="237" parent="229" name="is_active">
+    <column id="238" parent="229" name="is_active">
       <Position>5</Position>
       <DataType>tinyint(1)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="238" parent="229" name="role">
+    <column id="239" parent="229" name="role">
       <Position>6</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="239" parent="229" name="UNIQ_C2502824F85E0677">
+    <index id="240" parent="229" name="UNIQ_C2502824F85E0677">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="240" parent="229" name="UNIQ_C2502824E7927C74">
+    <index id="241" parent="229" name="UNIQ_C2502824E7927C74">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="241" parent="229" name="PRIMARY">
+    <key id="242" parent="229" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="242" parent="229" name="UNIQ_C2502824F85E0677">
+    <key id="243" parent="229" name="UNIQ_C2502824F85E0677">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>UNIQ_C2502824F85E0677</UnderlyingIndexName>
     </key>
-    <key id="243" parent="229" name="UNIQ_C2502824E7927C74">
+    <key id="244" parent="229" name="UNIQ_C2502824E7927C74">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>UNIQ_C2502824E7927C74</UnderlyingIndexName>
     </key>
-    <column id="244" parent="230" name="id">
+    <column id="245" parent="230" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="230" name="name">
+    <column id="246" parent="230" name="movie">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="247" parent="230" name="text">
+      <Position>3</Position>
+      <DataType>longtext|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="248" parent="230" name="author">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="249" parent="230" name="date">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="250" parent="230" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="251" parent="231" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="252" parent="231" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="230" name="date">
+    <column id="253" parent="231" name="date">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="230" name="description">
+    <column id="254" parent="231" name="description">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="230" name="regisseur">
+    <column id="255" parent="231" name="regisseur">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="230" name="producer">
+    <column id="256" parent="231" name="producer">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="250" parent="230" name="IDX_66BCD06EA41A7CDE">
+    <index id="257" parent="231" name="IDX_66BCD06EA41A7CDE">
       <ColNames>regisseur</ColNames>
     </index>
-    <index id="251" parent="230" name="IDX_66BCD06E976449DC">
+    <index id="258" parent="231" name="IDX_66BCD06E976449DC">
       <ColNames>producer</ColNames>
     </index>
-    <key id="252" parent="230" name="PRIMARY">
+    <key id="259" parent="231" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="253" parent="230" name="FK_66BCD06EA41A7CDE">
+    <foreign-key id="260" parent="231" name="FK_66BCD06EA41A7CDE">
       <ColNames>regisseur</ColNames>
       <RefSchemaName>filmdatenbank2</RefSchemaName>
       <RefTableName>movies_regisseur</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="254" parent="230" name="FK_66BCD06E976449DC">
+    <foreign-key id="261" parent="231" name="FK_66BCD06E976449DC">
       <ColNames>producer</ColNames>
       <RefSchemaName>filmdatenbank2</RefSchemaName>
       <RefTableName>moviesproducer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="255" parent="231" name="id">
+    <column id="262" parent="232" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="231" name="fullName">
+    <column id="263" parent="232" name="fullName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="231" name="birthday">
+    <column id="264" parent="232" name="birthday">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="258" parent="231" name="PRIMARY">
+    <key id="265" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="259" parent="232" name="id">
+    <column id="266" parent="233" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="232" name="name">
+    <column id="267" parent="233" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="232" name="website">
+    <column id="268" parent="233" name="website">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="262" parent="232" name="UNIQ_2F57A3E65E237E06">
+    <index id="269" parent="233" name="UNIQ_2F57A3E65E237E06">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="263" parent="232" name="UNIQ_2F57A3E6476F5DE7">
+    <index id="270" parent="233" name="UNIQ_2F57A3E6476F5DE7">
       <ColNames>website</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="264" parent="232" name="PRIMARY">
+    <key id="271" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="265" parent="232" name="UNIQ_2F57A3E65E237E06">
+    <key id="272" parent="233" name="UNIQ_2F57A3E65E237E06">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>UNIQ_2F57A3E65E237E06</UnderlyingIndexName>
     </key>
-    <key id="266" parent="232" name="UNIQ_2F57A3E6476F5DE7">
+    <key id="273" parent="233" name="UNIQ_2F57A3E6476F5DE7">
       <ColNames>website</ColNames>
       <UnderlyingIndexName>UNIQ_2F57A3E6476F5DE7</UnderlyingIndexName>
     </key>
