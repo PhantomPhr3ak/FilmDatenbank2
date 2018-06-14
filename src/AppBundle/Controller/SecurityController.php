@@ -17,8 +17,9 @@ class SecurityController extends Controller
 {
     /**
      * @param Request $request
-     * @Route("/login", name="login")
+     * @param AuthenticationUtils $authUtils
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/login", name="login")
      */
     public function loginAction(Request $request, AuthenticationUtils $authUtils){
         $error = $authUtils->getLastAuthenticationError();

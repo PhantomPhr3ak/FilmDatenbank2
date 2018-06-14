@@ -36,9 +36,10 @@ security:
 
             logout:
                 path: /logout
-                target: /
+                target: /login
 
     access_control:
         # require ROLE_ADMIN for /admin*
+       # - { path: ^/, roles: IS_AUTHENTICATED_ANONIMOUSLY, requires_channel: https}
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/create/, roles: ROLE_USER }

@@ -123,7 +123,7 @@ class Regisseur
 
     public function __toString()
     {
-        return $this->fullName;
+        return (string)$this->fullName;
     }
 }
 

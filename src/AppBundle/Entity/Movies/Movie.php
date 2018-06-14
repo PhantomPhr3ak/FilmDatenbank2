@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Movies;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,6 +58,13 @@ class Movie
      * @ORM\JoinColumn(name="producer", referencedColumnName="id")
      */
     private $producer;
+
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comments", mappedBy="author")
+     */
+    private $comments;
 
     /**
      * Get id
@@ -180,5 +188,15 @@ class Movie
     {
         $this->producer = $producer;
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return (string)$this->getName();
     }
 }
