@@ -1,21 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2 class="page-header">Test</h2>
-    {{ status }}
+    Status: {{ status }}
 
     {% for movie in movies %}
         <div class="container bg-light m-3 p-3" style="border-radius: 0.5rem">
-            <h2>{{ movie.name }}</h2>
-            <p>
-                <ul>
-                    <li>ID: <strong>{{ movie.id }}</strong></li>
-                    <li>Regisseur: <strong>{{ movie.regisseur }}</strong></li>
-                    <li>Producer: <strong>{{ movie.producer }}</strong></li>
-                    <li>Beschreibung: <strong>{{ movie.description }}</strong></li>
-                    <li>Erscheinungsdatum: <strong>{{ movie.date | date('d.m.Y') }}</strong></li>
-                </ul>
-            </p>
+            <div class="row">
+                <div class="col-9">
+                    <h2>{{ movie.name }}</h2>
+                    <p>
+                    <ul>
+                        <li>ID: <strong>{{ movie.id }}</strong></li>
+                        <li>Regisseur: <strong>{{ movie.regisseur }}</strong></li>
+                        <li>Producer: <strong>{{ movie.producer }}</strong></li>
+                        <li>Beschreibung: <strong>{{ movie.description }}</strong></li>
+                        <li>Erscheinungsdatum: <strong>{{ movie.date | date('d.m.Y') }}</strong></li>
+                    </ul>
+                    </p>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary my-2" data-toggle="collapse" data-target="#comments-{{ movie.id }}" aria-expanded="false" aria-controls="collapse{{ movie.id }}">Kommentare anzeigen</button><br>
+                    <a class="btn btn-secondary my-2 text-white" href="{{ path('user_new_comment', {id: movie.id}) }}">Kommentar schreiben</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="collapse" id="comments-{{ movie.id }}" style="width: 100%">
+                    <div class="col-12" style="width: 100%">
+                        <h2>Comments</h2><br>
+                        <div class="container-fluid">
+                            <!-- Auslesen aller Kommentare -->
+                            {% for comment in movie.comments %}
+                                <div class="row p-3 m-2 bg-white rounded">
+                                    <div class="col-3">
+                                        {{ comment.author.username }}
+                                    </div>
+                                    <div class="col-9">
+                                        <p>
+                                        {{ comment.text }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}

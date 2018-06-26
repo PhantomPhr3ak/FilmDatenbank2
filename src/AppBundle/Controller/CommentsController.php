@@ -6,6 +6,8 @@ use AppBundle\Entity\Comments;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -56,6 +58,50 @@ class CommentsController extends Controller
             'comment' => $comment,
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * @Route("/add/{id}", name="user_new_comment")
+     */
+    public function userNewAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $movie = $em->getRepository("AppBundle:Movies\Movie")->find($id);
+
+        if($movie){
+
+            $form = $this->createFormBuilder()
+                ->add('text', TextType::class, array('attr' => array('style' => 'max-width: 50%','class' => 'm-2 form-control')))
+                ->add('submit', SubmitType::class, array('label' => 'Insert', 'attr' => array('style' => 'margin-top: 1rem;', 'class' => 'btn btn-primary')))
+                ->getForm();
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()){
+
+                $newComment = new Comments();
+                $newComment->setAuthor($this->getUser());
+                $newComment->setMovie($movie);
+                $newComment->setDate(new \DateTime('now'));
+                $newComment->setText($form->get('text')->getData());
+
+                $em->persist($newComment);
+                $em->flush();
+
+                return $this->redirectToRoute('movie_home');
+            }
+
+            return $this->render('movies/create.html.twig', array(
+                "movie" => $movie,
+                "form" => $form->createView()
+            ));
+
+        } else {
+
+            return $this->redirectToRoute('movie_home');
+
+        }
+
+        //TODO
     }
 
     /**

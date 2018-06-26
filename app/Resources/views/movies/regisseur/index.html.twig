@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Regisseurs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fullname</th>
+                <th>Birthday</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for regisseur in regisseurs %}
+            <tr>
+                <td><a href="{{ path('admin_regisseur_show', { 'id': regisseur.id }) }}">{{ regisseur.id }}</a></td>
+                <td>{{ regisseur.fullName }}</td>
+                <td>{% if regisseur.birthday %}{{ regisseur.birthday|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_regisseur_show', { 'id': regisseur.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_regisseur_edit', { 'id': regisseur.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_regisseur_new') }}">Create a new regisseur</a>
+        </li>
+    </ul>
+{% endblock %}

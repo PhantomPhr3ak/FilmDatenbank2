@@ -25,6 +25,7 @@ class Comments
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Movies\Movie", inversedBy="comments")
+     * @ORM\JoinColumn(name="movie", referencedColumnName="id", onDelete="CASCADE")
      */
     private $movie;
 
@@ -37,6 +38,7 @@ class Comments
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comments")
+     * @ORM\JoinColumn(name="author", referencedColumnName="id", onDelete="CASCADE")
      */
     private $author;
 

@@ -33,7 +33,7 @@ class MovieController extends Controller
      */
     public function adminAction()
     {
-        return new Response('<html><body>Admin page!</body></html>');
+        return $this->render('admin/index.html.twig');
     }
 
     /**
@@ -138,5 +138,12 @@ class MovieController extends Controller
         return $this->render('movies/create.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("comment/add/{id}", name="new_comment")
+     */
+    public function newComment($id){
+        $em = $this->getDoctrine()->getManager();
     }
 }

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ path('movie_home') }}">MovieDatabase ADMIN</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active border-left border-right">
+                <a class="nav-link" href="{{ path('movies_movie_index') }}">Movies</a>
+            </li>
+            <li class="nav-item border-left border-right border-light">
+                <a class="nav-link active" href="{{ path('comments_index') }}">Comments</a>
+            </li>
+            <li class="nav-item border-left border-right border-light">
+                <a class="nav-link active" href="{{ path('admin_producer_index') }}">Producers</a>
+            </li>
+            <li class="nav-item border-left border-right border-light">
+                <a class="nav-link active" href="{{ path('admin_regisseur_index') }}">Regisseurs</a>
+            </li>
+            <li class="nav-item border-left border-right border-light">
+                <a class="nav-link active" href="{{ path('login') }}">Login</a>
+            </li>
+            <li class="nav-item border-left border-right border-light">
+                <a class="nav-link active" href="{{ path('user_registration') }}">Register</a>
+            </li>
+        </ul>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a class="btn btn-danger m-2" href="{{ path('logout') }}">LOGOUT</a>
+        {% endif %}
+    </div>
+</nav>
+
+<main role="main" class="container pt-3">
+    <div class="row">
+        <div class="col-md-12">
+            {% for flash_message in app.session.flashbag.get('notice') %}
+                <div class="alert alert-success">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</main><!-- /.container -->
+
+{% block javascripts %}{% endblock %}
+
+<script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('node_modules/popper.js/dist/popper.min.js') }}"></script>
+<script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('node_modules/datatables.net/js/jquery.dataTables.js') }}"></script>
+
+</body>
+</html>

@@ -47,7 +47,7 @@ class Movie
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Movies\Regisseur", inversedBy="movies")
-     * @ORM\JoinColumn(name="regisseur", referencedColumnName="id")
+     * @ORM\JoinColumn(name="regisseur", referencedColumnName="id", onDelete="CASCADE")
      */
     private $regisseur;
 
@@ -55,14 +55,14 @@ class Movie
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Movies\producer", inversedBy="movies")
-     * @ORM\JoinColumn(name="producer", referencedColumnName="id")
+     * @ORM\JoinColumn(name="producer", referencedColumnName="id", onDelete="CASCADE")
      */
     private $producer;
 
     /**
      * @var array
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comments", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comments", mappedBy="movie")
      */
     private $comments;
 
@@ -198,5 +198,21 @@ class Movie
     public function __toString()
     {
         return (string)$this->getName();
+    }
+
+    /**
+     * @return array
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param array $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
     }
 }
