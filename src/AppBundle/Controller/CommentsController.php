@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Comment controller.
  *
- * @Route("comments")
+ * @Route("")
  */
 class CommentsController extends Controller
 {
     /**
      * Lists all comment entities.
      *
-     * @Route("/", name="comments_index")
+     * @Route("admin/comments/", name="comments_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -37,7 +37,7 @@ class CommentsController extends Controller
     /**
      * Creates a new comment entity.
      *
-     * @Route("/new", name="comments_new")
+     * @Route("admin/comments/new", name="comments_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -61,7 +61,7 @@ class CommentsController extends Controller
     }
 
     /**
-     * @Route("/add/{id}", name="user_new_comment")
+     * @Route("comments/add/{id}", name="user_new_comment")
      */
     public function userNewAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
@@ -107,7 +107,7 @@ class CommentsController extends Controller
     /**
      * Finds and displays a comment entity.
      *
-     * @Route("/{id}", name="comments_show")
+     * @Route("admin/comments/{id}", name="comments_show")
      * @Method("GET")
      */
     public function showAction(Comments $comment)
@@ -123,7 +123,7 @@ class CommentsController extends Controller
     /**
      * Displays a form to edit an existing comment entity.
      *
-     * @Route("/{id}/edit", name="comments_edit")
+     * @Route("admin/comments/{id}/edit", name="comments_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Comments $comment)
@@ -148,7 +148,7 @@ class CommentsController extends Controller
     /**
      * Deletes a comment entity.
      *
-     * @Route("/{id}", name="comments_delete")
+     * @Route("admin/comments/{id}", name="comments_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Comments $comment)

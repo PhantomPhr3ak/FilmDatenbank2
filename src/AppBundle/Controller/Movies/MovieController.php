@@ -115,7 +115,7 @@ class MovieController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('movies_movie_index');
+        return $this->redirectToRoute('admin_movie_index');
     }
 
     /**
@@ -128,7 +128,7 @@ class MovieController extends Controller
     private function createDeleteForm(Movie $movie)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('movies_movie_delete', array('id' => $movie->getId())))
+            ->setAction($this->generateUrl('admin_movie_delete', array('id' => $movie->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -8,20 +8,47 @@
             <div class="row">
                 <div class="col-9">
                     <h2>{{ movie.name }}</h2>
-                    <p>
-                    <ul>
+      {#              <ul>
                         <li>ID: <strong>{{ movie.id }}</strong></li>
                         <li>Regisseur: <strong>{{ movie.regisseur }}</strong></li>
                         <li>Producer: <strong>{{ movie.producer }}</strong></li>
                         <li>Beschreibung: <strong>{{ movie.description }}</strong></li>
                         <li>Erscheinungsdatum: <strong>{{ movie.date | date('d.m.Y') }}</strong></li>
-                    </ul>
-                    </p>
+                    </ul>#}
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <td class="pl-3">{{ movie.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Regisseur</th>
+                            <td class="pl-3">{{ movie.regisseur }}</td>
+                        </tr>
+                        <tr>
+                            <th>Producer</th>
+                            <td class="pl-3">{{ movie.producer }}</td>
+                        </tr>
+                        <tr>
+                            <th>Beschreibung</th>
+                            <td class="pl-3">{{ movie.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Erscheinungsdatum</th>
+                            <td class="pl-3">{{ movie.date | date('d.m.Y') }}</td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-warning my-2" data-toggle="collapse" data-target="#comments-{{ movie.id }}" aria-expanded="false" aria-controls="collapse{{ movie.id }}">Kommentare anzeigen</button><br>
+            {% set i = 0 %}
+            {% for comment in movie.comments %}
+                {% set i = i + 1 %}
+            {% endfor %}
+                    <button class="btn btn-warning my-2" data-toggle="collapse" data-target="#comments-{{ movie.id }}" aria-expanded="false" aria-controls="collapse{{ movie.id }}">Kommentare anzeigen<span class="badge badge-light ml-2">{{ i }}</span>
+                    </button><br>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <button class="btn btn-secondary my-2 text-white" href="" disabled>Kommentar schreiben</button>
+                        <span data-toggle="tooltip" title="Some tooltip text!">
+                            <button class="btn btn-secondary my-2 text-white" href="" disabled>Kommentar schreiben</button>
+                        </span>
                     {% elseif is_granted('ROLE_USER') %}
                         <a class="btn btn-secondary my-2 text-white" href="{{ path('user_new_comment', {id: movie.id}) }}">Kommentar schreiben</a>
                     {% endif %}
@@ -29,26 +56,35 @@
             </div>
             <div class="row">
                 <div class="collapse" id="comments-{{ movie.id }}" style="width: 100%">
-                    <div class="col-12" style="width: 100%">
-                        <h2>Comments</h2><br>
-                        <div class="container-fluid">
-                            <!-- Auslesen aller Kommentare -->
-                            {% for comment in movie.comments %}
-                                <div class="row p-3 m-2 bg-white rounded">
-                                    <div class="col-3">
-                                        {{ comment.author.username }} <br> at {{ comment.date | date('Y-m-d H:i:s') }}
-                                    </div>
-                                    <div class="col-9">
-                                        <p>
-                                        {{ comment.text }}
-                                        </p>
-                                    </div>
+                    <div class="col-12 pt-4" style="width: 100%">
+                        <h4>Kommentare</h4><br>
+                        <!-- Auslesen aller Kommentare -->
+                        {% for comment in movie.comments %}
+                            <div class="row px-3 p-3 mx-2 my-2 bg-white rounded">
+                                <div class="col-3">
+                                    {{ comment.author.username }} <br> at {{ comment.date | date('Y-m-d H:i:s') }}
                                 </div>
-                            {% endfor %}
-                        </div>
+                                <div class="col-9">
+                                    <p>
+                                    {{ comment.text }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+        $('[data-toggle="popover"]').popover()
+        })
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 {% endblock %}
