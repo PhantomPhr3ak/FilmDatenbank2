@@ -60,3 +60,6 @@ security:
        # - { path: ^/, roles: IS_AUTHENTICATED_ANONIMOUSLY, requires_channel: https}
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/create/, roles: ROLE_USER }
+        - { path: /comments/, roles: ROLE_ADMIN }
+        - { path: ^/create/^, roles: ROLE_ADMIN }
+        - { path: ^/new/^, roles: ROLE_ADMIN }

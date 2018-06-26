@@ -17,39 +17,67 @@
 </head>
 
 <body>
+{% if is_granted('ROLE_ADMIN') %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ path('movie_home') }}">MovieDatabase</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{ path('movie_home') }}">MovieDatabase</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active border-left border-right">
+                    <a class="nav-link" href="{{ path('admin_movie_index') }}">Movies</a>
+                </li>
+                <li class="nav-item border-left border-right border-light">
+                    <a class="nav-link active" href="{{ path('admin_producer_index') }}">Producers</a>
+                </li>
+                <li class="nav-item border-left border-right border-light">
+                    <a class="nav-link active" href="{{ path('admin_regisseur_index') }}">Regisseurs</a>
+                </li>
+                <li class="nav-item border-left border-right border-light">
+                    <a class="nav-link active" href="{{ path('comments_index') }}">Comments</a>
+                </li>
+            </ul>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <a class="btn btn-danger m-2" href="{{ path('logout') }}">LOGOUT</a>
+            {% else %}
+                <a href="{{ path('login') }}" class="btn btn-success m-2">Login</a>
+                <a href="{{ path('user_registration') }}" class="btn btn-primary m-2">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+{% else %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ path('movie_home') }}">MovieDatabase</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active border-left border-right">
-                <a class="nav-link" href="{{ path('movie_home') }}">All Movies</a>
-            </li>
-            <li class="nav-item border-left border-right border-light">
-                <a class="nav-link active" href="{{ path('movie_create') }}">New Movie</a>
-            </li>
-            <li class="nav-item border-left border-right border-light">
-                <a class="nav-link active" href="{{ path('producer_create') }}">New Producer</a>
-            </li>
-            <li class="nav-item border-left border-right border-light">
-                <a class="nav-link active" href="{{ path('regisseur_create') }}">New Regisseur</a>
-            </li>
-            <li class="nav-item border-left border-right border-light">
-                <a class="nav-link active" href="{{ path('login') }}">Login</a>
-            </li>
-            <li class="nav-item border-left border-right border-light">
-                <a class="nav-link active" href="{{ path('user_registration') }}">Register</a>
-            </li>
-        </ul>
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <a class="btn btn-danger m-2" href="{{ path('logout') }}">LOGOUT</a>
-        {% endif %}
-    </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active border-left border-right">
+                    <a class="nav-link" href="{{ path('movie_home') }}">All Movies</a>
+                </li>
+                <li class="nav-item border-left border-right border-light">
+                    <a class="nav-link active" href="{{ path('movie_create') }}">New Movie</a>
+                </li>
+                <li class="nav-item border-left border-right border-light">
+                    <a class="nav-link active" href="{{ path('producer_create') }}">New Producer</a>
+                </li>
+                <li class="nav-item border-left border-right border-light">
+                    <a class="nav-link active" href="{{ path('regisseur_create') }}">New Regisseur</a>
+                </li>
+            </ul>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <a class="btn btn-danger m-2" href="{{ path('logout') }}">LOGOUT</a>
+            {% else %}
+                <a href="{{ path('login') }}" class="btn btn-success m-2">Login</a>
+                <a href="{{ path('user_registration') }}" class="btn btn-primary m-2">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+{% endif %}
 
 <main role="main" class="container pt-3">
     <div class="row">

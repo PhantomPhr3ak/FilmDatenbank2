@@ -17,7 +17,7 @@ class MovieController extends Controller
     /**
      * Lists all movie entities.
      *
-     * @Route("/", name="movies_movie_index")
+     * @Route("/", name="admin_movie_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class MovieController extends Controller
     /**
      * Creates a new movie entity.
      *
-     * @Route("/new", name="movies_movie_new")
+     * @Route("/new", name="admin_movie_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +60,7 @@ class MovieController extends Controller
     /**
      * Finds and displays a movie entity.
      *
-     * @Route("/{id}", name="movies_movie_show")
+     * @Route("/{id}", name="admin_movie_show")
      * @Method("GET")
      */
     public function showAction(Movie $movie)
@@ -76,7 +76,7 @@ class MovieController extends Controller
     /**
      * Displays a form to edit an existing movie entity.
      *
-     * @Route("/{id}/edit", name="movies_movie_edit")
+     * @Route("/{id}/edit", name="admin_movie_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Movie $movie)
@@ -101,7 +101,7 @@ class MovieController extends Controller
     /**
      * Deletes a movie entity.
      *
-     * @Route("/{id}", name="movies_movie_delete")
+     * @Route("/{id}", name="admin_movie_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Movie $movie)

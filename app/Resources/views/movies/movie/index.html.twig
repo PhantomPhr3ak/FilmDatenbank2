@@ -16,17 +16,17 @@
         <tbody>
         {% for movie in movies %}
             <tr>
-                <td><a href="{{ path('movies_movie_show', { 'id': movie.id }) }}">{{ movie.id }}</a></td>
+                <td><a href="{{ path('admin_movie_show', { 'id': movie.id }) }}">{{ movie.id }}</a></td>
                 <td>{{ movie.name }}</td>
                 <td>{% if movie.date %}{{ movie.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ movie.description }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('movies_movie_show', { 'id': movie.id }) }}">show</a>
+                            <a href="{{ path('admin_movie_show', { 'id': movie.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('movies_movie_edit', { 'id': movie.id }) }}">edit</a>
+                            <a href="{{ path('admin_movie_edit', { 'id': movie.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -37,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('movies_movie_new') }}">Create a new movie</a>
+            <a href="{{ path('admin_movie_new') }}">Create a new movie</a>
         </li>
     </ul>
 {% endblock %}
