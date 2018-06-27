@@ -55,13 +55,13 @@
                     </div>
             </div>
             <div class="row">
-                <div class="collapse" id="comments-{{ movie.id }}" style="width: 100%">
-                    <div class="col-12 pt-4" style="width: 100%">
+                <div class="collapse pt-3" id="comments-{{ movie.id }}" style="margin-left: 2%; margin-right: 2%;width: 96%">
+                    <div class="col-12 pt-2 border-top" style="width: 100%">
                         <h4>Kommentare</h4><br>
                         <!-- Auslesen aller Kommentare -->
                         {% for comment in movie.comments %}
                             <div class="row px-3 p-3 mx-2 my-2 bg-white rounded">
-                                <div class="col-3">
+                                <div class="col-3 border-right">
                                     {{ comment.author.username }} <br> at {{ comment.date | date('Y-m-d H:i:s') }}
                                 </div>
                                 <div class="col-9">
